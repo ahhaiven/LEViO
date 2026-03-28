@@ -1,0 +1,50 @@
+[package]
+name = "levio-bot"
+version = "2.0.0"
+edition = "2021"
+authors = ["Levelyn Esports"]
+description = "LEViO — Levelyn Esports AI Discord Bot (Rust Edition)"
+
+[dependencies]
+# Discord framework
+serenity = { version = "0.12", features = [
+    "client",
+    "gateway",
+    "rustls_backend",
+    "model",
+    "cache",
+    "framework",
+    "standard_framework",
+] }
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# HTTP client
+reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Environment variables
+dotenvy = "0.15"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Time (for mute timeouts)
+chrono = { version = "0.4", features = ["serde"] }
+
+# HTML scraping (DuckDuckGo parsing)
+scraper = "0.19"
+
+# URL encoding (search queries)
+urlencoding = "2"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
